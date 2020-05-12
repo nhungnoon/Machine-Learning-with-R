@@ -10,4 +10,4 @@ datapredCross <- CrossTable(data.testLabels, data_pred, prop.chisq = FALSE)
 # k-means model
 k2 <- kmeans(data, centers = 2, nstart = 25)
 # create cluster
-fviz_cluster(k2, data = norank)
+fviz_cluster(k2, data = data)
