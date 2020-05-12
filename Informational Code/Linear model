@@ -1,37 +1,37 @@
 # Linear model
-model = lm(tusers ~ tempFF+Season, data=bikedayf)
+model = lm(y ~ x+w, data)
 summary(model)
 vif(model)
 confint(model)
 
 # Regsubsets - R^2 comparison
-reg.best.factor <- regsubsets(tusers~Season+Holiday+day+workday+weather+tempFF+humidity+wind, data = bikedayf, force.in="tempFF", nvmax=20)  # leaps, 
+reg.best.factor <- regsubsets(y~x+w+z+t+r, data , force.in="variable3", nvmax=20)  # leaps, 
 plot(reg.best.factor, scale = "adjr2", main = "Adjusted R^2 using Factors")
 #trying again using all variables as numeric
-reg.best <- regsubsets(tusers~Season+Holiday+day+workday+weather+tempFF+humidity+wind, data = bikeday, nbest = 1)  # leaps, 
+reg.best <- regsubsets(y~x+w+z+t+r, data , nbest = 1)  # leaps, 
 plot(reg.best, scale = "adjr2", main = "Adjusted R^2 using numeric data")
 # Forward method
-reg.for <- regsubsets(vis~., data = ozone, method = "forward", nvmax = 9)
+reg.for <- regsubsets(vis~., data, method = "forward", nvmax = 9)
 plot(reg.for, scale = "adjr2", main = "Adjusted R^2")
 # Backward method
-reg.back <- regsubsets(vis~., data = ozone, method = "backward", nvmax = 9)
+reg.back <- regsubsets(vis~., data, method = "backward", nvmax = 9)
 plot(reg.back, scale = "adjr2", main = "Adjusted R^2")
 # Hybrid method
-reg.seq <- regsubsets(vis~., data = ozone, method = "seqrep", nvmax = 9)
+reg.seq <- regsubsets(vis~., data, method = "seqrep", nvmax = 9)
 plot(reg.seq, scale = "adjr2", main = "Adjusted R^2")
 # Exhaustive method
-reg.exh <- regsubsets(vis~., data = ozone, method = "exhaustive", nvmax = 9)
+reg.exh <- regsubsets(vis~., data, method = "exhaustive", nvmax = 9)
 plot(reg.exh, scale = "adjr2", main = "Adjusted R^2")
 
 # To compare models
 annova(model1, model2, model3)
 
 # Correlation between variables
-cor(ozone$O3, ozone$temp, method = "pearson")
-cor(ozone$O3, ozone$temp, method = "spearman")
-plot(ozone$O3~ozone$temp)
+cor(data$variable, data$variable2, method = "pearson")
+cor(data$variable, data$variable2, method = "spearman")
+plot(data$variable~data$variable2)
 
 # Shapiro and QQnorm
-shapiro.test(ozone$humidity)
-qqnorm(ozone$humidity)
-qqline(ozone$humidity)
+shapiro.test(data$variable)
+qqnorm(data$variable)
+qqline(data$variable)
