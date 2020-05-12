@@ -1,26 +1,24 @@
 # Logistic regression model
-model <- glm(y ~ ydline + Blocked, data = nfl, family = "binomial")
+model <- glm(y ~ x + w, data, family = "binomial")
 summary(model)
 coef(model)
 
 # Use bestglm to find the best model
-res.bestglm <- bestglm(Xy = nflwithoutgood, family = binomial, IC = "BIC", method = "exhaustive")
+res.bestglm <- bestglm(Xy = data, family = binomial, IC = "BIC", method = "exhaustive")
 res.bestglm$BestModel
 summary(res.bestglm$BestModel)
 
 
 # Hoslem and Lemeshow goodness-of-fit (GOF) test
-loadPkg("ResourceSelection")
-hoslem.test(nfl$y, fitted(model)) 
+hoslem.test(data$y, fitted(model)) 
 
 # Area-Under-Curve (AUC) of the Receiver-Operating-Characteristic (ROC) curve
-loadPkg("pROC")
+library("pROC")
 prob=predict(model, type = c("response"))
-nfl$prob=prob
+data$prob=prob
 h <- roc(y~prob, data=data)
 auc(h)
 plot(h)
 
 # The McFadden statistics
-loadPkg("pscl") 
-pR2(model)
+ pR2(model)
