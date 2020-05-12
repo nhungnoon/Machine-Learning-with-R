@@ -27,6 +27,10 @@ data_subset <- subset(data,variable1=='WAS' & variable2 > 30)
 # To find max/min
 max/min(data$variable)
 
+# Factor data
+diabetes <- as.factor(pima$type)
+ptable = prop.table(table(diabetes)) * 100
+
 # To find number of observation
 nrow(data) 
 length(data$bmi) # same as nrow(data)
@@ -46,8 +50,11 @@ boxplot(data$variable)
 # Histogram
 hist(data$variable)
 
-# use ggplot 
+# use ggplot - point plot
 ggplot(data)+
   geom_point(mapping = aes(x=variable1, y=variable2, color=variable3))
   
+# use ggplot - histogram
+ggplot(data = pima) + geom_histogram(mapping = aes(x = bmi, fill = ..count..)) + 
+ggtitle("Distribution of Body Mass Index") + theme(plot.title = element_text(hjust = 0.5)) + scale_fill_gradient("Count", low = "green", high = "red") 
  
