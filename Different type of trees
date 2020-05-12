@@ -1,0 +1,18 @@
+# Categorical tree 
+# y is a factor level variable
+fit <- rpart(y ~ x + w + z, method="class", data=data)
+
+printcp(fit) 
+plotcp(fit) 
+summary(fit) 
+
+# plot tree 
+plot(fit, uniform=TRUE, main="Classification Tree")
+text(fit, use.n=TRUE, all=TRUE, cex=.8)
+
+# To plot tree nicely 
+rpart.plot(fit)
+fancyRpartPlot(fit)
+
+# Optional for a prune tree
+pfit <- prune(fit, cp = fit$cptable[which.min(fit$cptable[,"xerror"]),"CP"])
