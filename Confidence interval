@@ -1,0 +1,21 @@
+# Construct t-intervals
+tintervalc80 = t.test(x=data$gre, conf.level=0.80)
+tintervalc80.rej = t.test(x=Adata$gre[Adata$admit == "0"], conf.level=0.80)
+tintervalc99 = t.test(x=data$gre, conf.level=0.99)
+tintervalc99.rej = t.test(x=Adata$gre[Adata$admit == "0"], conf.level=0.99)
+
+# Two sample t-test
+twosampleT.gre = t.test(Adata.adm$gre, Adata.rej$gre )
+
+# Contigency table
+contable = table(Adata$admit,Adata$rank)
+
+# Chi-square table
+Adatachisq <- chisq.test(contable)
+
+# Correlation plot
+loadPkg("corrplot")
+corrplot(cor(bikeday), type = "lower")
+corrplot(cor(bikeday), type = "upper", method = "number")
+corrplot.mixed(cor(bikeday))
+pairs(bikeday)
