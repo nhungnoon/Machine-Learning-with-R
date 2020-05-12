@@ -1,8 +1,18 @@
+# Construct z-intervals
+ztest99 = z.test(x=data$variable, mu=73.7, sigma.x = 2.31, conf.level=0.99 )
+ztest99$conf.int
+ztest99$alternative
+ztest99$estimate
+ztest99$statistic
+ztest99$method
+
+
 # Construct t-intervals
+t.test(x=data$variable, mu=73.7)
 tintervalc80 = t.test(x=data$gre, conf.level=0.80)
-tintervalc80.rej = t.test(x=Adata$gre[Adata$admit == "0"], conf.level=0.80)
+tintervalc80.rej = t.test(x=data$gre[data$admit == "0"], conf.level=0.80)
 tintervalc99 = t.test(x=data$gre, conf.level=0.99)
-tintervalc99.rej = t.test(x=Adata$gre[Adata$admit == "0"], conf.level=0.99)
+tintervalc99.rej = t.test(x=data$gre[data$admit == "0"], conf.level=0.99)
 
 # Two sample t-test
 twosampleT.gre = t.test(Adata.adm$gre, Adata.rej$gre )
@@ -12,6 +22,17 @@ contable = table(Adata$admit,Adata$rank)
 
 # Chi-square table
 Adatachisq <- chisq.test(contable)
+
+# Sample chi-square test
+variable1 = c(A=837, B=861, C=690)
+variable2 = c(.36, .35, .29)
+# Next perform chi-square test
+chigoodness = chisq.test(variable1, p = variable2) # p stands for proportions
+
+names(chigoodness)
+chigoodness$statistic
+chigoodness$parameter
+chigoodness$expected
 
 # Correlation plot
 loadPkg("corrplot")
