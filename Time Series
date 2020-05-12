@@ -1,0 +1,13 @@
+# time series analysis
+time_series <- ts(data, frequency = 12, start = c(yearvalue, #of gaps))
+plot.ts(time_series)
+
+# decompose( ) takes into account for use the level of seasonality
+decompose_ <- decompose(time_series)
+summary(decompose_$seasonal)
+
+# forecast 
+forecast <- HoltWinters(time_series)
+forecast$SSE
+
+forecast1 <- forecast.HoltWinters(forecast, h=#ofadvancedtimes)
