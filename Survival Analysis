@@ -1,0 +1,20 @@
+# Simple survival analysis
+surv1 <- Surv(time = data$futime, event = data$fustat)
+
+# Non-parametric model without using any distribution
+s1fit <- survfit(surv1~1, data = data)
+summary(s1fit)
+
+# Plot the model
+plot(s1fit,xlab="t",ylab=expression(hat(S)*"(t)"))
+ggsurvplot(s1fit)
+
+# Non-parametric survival models
+# Exponential distribution
+s2exp <- survreg(surv1~1, data,dist='exponential')
+
+# Weibull distribution
+s2exp <- survreg(surv1~1, data,dist='exponential')
+
+# Parametric models with variable1 as predictor
+s <- survreg(surv1~variable1, data, dist='exponential')
