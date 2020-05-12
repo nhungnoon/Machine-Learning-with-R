@@ -1,5 +1,5 @@
 # Simple survival analysis
-surv1 <- Surv(time = data$futime, event = data$fustat)
+surv1 <- Surv(time = data$time, event = data$event)
 
 # Non-parametric model without using any distribution
 s1fit <- survfit(surv1~1, data = data)
