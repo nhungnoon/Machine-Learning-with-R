@@ -1,0 +1,53 @@
+# Read in data file
+data <- read.csv("data.csv")
+
+# To give summary about the dataset
+str()
+
+# To view data.frame in a spreadsheet format
+View()
+
+# To show head or tail of dataset
+head()
+tail()
+
+# To check if there is missing data
+apply(data, 2, function(x) any(is.na(x)))
+
+# To find the missing data
+missing = subset(data, is.na(variable))
+
+# To change column names. Also notice that "=" and "<-" are mostly the same as well.
+colnames(data)[4] <- "height"
+colnames(data)[4:6]=c("height","weight","age")
+
+# Subset data
+data_subset <- subset(data,variable1=='WAS' & variable2 > 30)
+
+# To find max/min
+max/min(data$variable)
+
+# To find number of observation
+nrow(data) 
+length(data$bmi) # same as nrow(data)
+length(which(!is.na(data$bmi))) # include NA value
+
+# Select the first 5 observations and first 4 columns/variables from the dataset
+data[1:5,1:4]
+
+
+# To find statistics (summary) of variables
+summary(data$variable)
+
+
+# Boxplot
+boxplot(data$variable)
+
+# Histogram
+hist(data$variable)
+
+# use ggplot 
+ggplot(data)+
+  geom_point(mapping = aes(x=variable1, y=variable2, color=variable3))
+  
+ 
