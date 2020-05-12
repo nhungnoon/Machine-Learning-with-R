@@ -1,0 +1,13 @@
+# Create training labels
+data.trainLabels <- data[data_sample==1, 1]
+data.testLabels <- data[data_sample==2, 1]
+# knn model
+data_pred <- knn(train =data_training, test = data_test, cl=data.trainLabels, k=5)
+# Compare table
+datapredCross <- CrossTable(data.testLabels, data_pred, prop.chisq = FALSE)
+
+
+# k-means model
+k2 <- kmeans(data, centers = 2, nstart = 25)
+# create cluster
+fviz_cluster(k2, data = norank)
