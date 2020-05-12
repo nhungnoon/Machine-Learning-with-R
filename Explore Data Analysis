@@ -23,13 +23,18 @@ colnames(data)[4:6]=c("height","weight","age")
 
 # Subset data
 data_subset <- subset(data,variable1=='WAS' & variable2 > 30)
+nfl <- nfl [-c(1,2,3,7,8,10,13,14,17,20)]
 
 # To find max/min
 max/min(data$variable)
 
 # Factor data
+nfl$Blocked <- factor(nfl$Blocked)
 diabetes <- as.factor(pima$type)
 ptable = prop.table(table(diabetes)) * 100
+
+# Transform variable
+nfl$y <- ifelse(nfl$y ==1, TRUE, FALSE)
 
 # To find number of observation
 nrow(data) 
